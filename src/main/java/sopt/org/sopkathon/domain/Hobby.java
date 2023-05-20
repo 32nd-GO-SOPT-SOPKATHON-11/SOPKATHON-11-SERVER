@@ -17,7 +17,7 @@ public class Hobby {
     private boolean exercise;
 
     @Column
-    private boolean read;
+    private boolean book;
 
     @Column
     private boolean art;
