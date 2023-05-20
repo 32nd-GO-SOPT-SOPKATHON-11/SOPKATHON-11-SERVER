@@ -8,13 +8,9 @@ import sopt.org.sopkathon.domain.Hobby;
 import sopt.org.sopkathon.domain.Keyword;
 import sopt.org.sopkathon.domain.User;
 import sopt.org.sopkathon.exception.Error;
-import sopt.org.sopkathon.infrastructure.HobbyRepository;
-import sopt.org.sopkathon.infrastructure.KeywordRepository;
+import sopt.org.sopkathon.exception.model.NotFoundException;
 import sopt.org.sopkathon.controller.dto.response.MatchingResponseDto;
-import sopt.org.sopkathon.controller.dto.response.UserResponseDto;
 import sopt.org.sopkathon.domain.Matching;
-import sopt.org.sopkathon.domain.User;
-import sopt.org.sopkathon.exception.Error;
 import sopt.org.sopkathon.infrastructure.MatchingRepository;
 import sopt.org.sopkathon.infrastructure.UserRepository;
 
@@ -47,7 +43,7 @@ public class UserService {
 
     @Transactional
     public UserDetailResponseDto getUserDetail(Long id) {
-        User user = userRepository.findById(id);
+        User user = userRepository.findById(id).get();
         Hobby hobby = user.getHobby();
         Keyword keyword = user.getKeyword();
         List<String> hobbyList = new ArrayList<>();
@@ -98,7 +94,7 @@ public class UserService {
         List<Matching> matchings = matchingRepository.findByWoman(womanId);
         List<MatchingResponseDto> result = new ArrayList<>();
         for(Matching match : matchings){
-            User user = userRepository.findById(match.getMan());
+            User user = userRepository.findById(match.getMan()).orElseThrow(() -> new NotFoundException(Error.NOT_FOUND_ERROR, "존재하지 않는 유저를 검색했습니다."));
             MatchingResponseDto responseDto = MatchingResponseDto.of(user.getName(), user.getProfileImage());
             result.add(responseDto);
         }

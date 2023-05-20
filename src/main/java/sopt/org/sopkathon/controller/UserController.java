@@ -8,6 +8,7 @@ import sopt.org.sopkathon.controller.dto.response.UserDetailResponseDto;
 import sopt.org.sopkathon.controller.dto.response.MatchingResponseDto;
 import sopt.org.sopkathon.controller.dto.response.UserResponseDto;
 import sopt.org.sopkathon.exception.Success;
+import sopt.org.sopkathon.exception.model.NotFoundException;
 import sopt.org.sopkathon.service.UserService;
 
 import java.util.List;
@@ -32,7 +33,7 @@ public class UserController {
 
     @GetMapping("/matching")
     @ResponseStatus(HttpStatus.OK)
-    public ApiResponse<List<MatchingResponseDto>> getMatchingUserList() {
+    public ApiResponse<List<MatchingResponseDto>> getMatchingUserList() throws NotFoundException {
         return ApiResponse.success(Success.USERS_FIND_SUCCESS, userService.getMatchingList(1L));
     }
 }
