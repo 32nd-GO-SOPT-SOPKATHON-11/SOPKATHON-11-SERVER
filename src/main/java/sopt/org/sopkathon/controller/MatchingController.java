@@ -1,4 +1,4 @@
-package sopt.org.sopkathon.controller.dto;
+package sopt.org.sopkathon.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,7 +15,6 @@ public class MatchingController {
 
     @PostMapping("/matching")
     public void postMatching(@RequestBody MatchingRequestDto requestDto){
-        System.out.println(requestDto.getUserId());
         matchingService.postMatching(1L, Long.valueOf(requestDto.getUserId()));
     }
 }
