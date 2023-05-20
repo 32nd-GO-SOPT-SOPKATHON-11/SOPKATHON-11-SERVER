@@ -13,7 +13,7 @@ public enum Success {
     user
      */
     USERS_FIND_SUCCESS(HttpStatus.OK),
-
+    USER_DETAIL_FIND_SUCCESS(HttpStatus.OK),
     ;
 
     private final HttpStatus httpStatus;
