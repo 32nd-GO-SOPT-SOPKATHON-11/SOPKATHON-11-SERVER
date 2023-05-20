@@ -8,6 +8,11 @@ import org.springframework.http.HttpStatus;
 @Getter
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public enum Error{
+    /**
+     * 500 INTERNAL SERVER ERROR
+     */
+    INTERNAL_SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR),
+    ;
     ;
 
     private final HttpStatus httpStatus;
