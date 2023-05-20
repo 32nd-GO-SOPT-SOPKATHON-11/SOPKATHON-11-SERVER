@@ -9,6 +9,8 @@ import java.util.List;
 
 public interface UserRepository extends Repository<User, Long> {
 
+    User findById(Long id);
+
     @Query("select u from User u where u.id != 1")
     List<User> getAll();
 }
