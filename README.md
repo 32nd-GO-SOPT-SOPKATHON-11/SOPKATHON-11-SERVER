@@ -111,8 +111,10 @@ feature/#이슈넘버
 
 ### Merge
 
-- Merge를 할 때는 커밋 메세지를 `**[PREFIX] #이슈번호 - 구현내용**` 형식의 이슈 이름과 같이 수정해줍니다.
+- Merge를 할 때는 커밋 메세지를 **`[PREFIX] #이슈번호 - 구현내용`** 형식의 이슈 이름과 같이 수정해줍니다.
 - Merge 후 재사용하지 않는 브랜치는 삭제합니다.
+
+<br>
 
 ## 👾 ERD 구조
 <img width="1109" alt="image" src="https://github.com/32nd-GO-SOPT-SOPKATHON-11/SOPKATHON-11-SERVER/assets/65678579/c030ec35-e87d-40ec-b841-9267ebdeb479">
@@ -156,6 +158,9 @@ feature/#이슈넘버
 ```
 
 ## 🌷우리의 행복한 Chu억~♥︎ 🌷
+### 한 줄 응원의 메세지
+**아이브가 짱이다~**  
+
 <img src= "https://github.com/32nd-GO-SOPT-SOPKATHON-11/SOPKATHON-11-SERVER/assets/65678579/b9026148-0c0c-4212-93ac-2cdd7d562beb" width="300"> <img src = "https://github.com/32nd-GO-SOPT-SOPKATHON-11/SOPKATHON-11-SERVER/assets/65678579/db94873d-050f-4a0b-aa83-21a121159d3a" width="300">
 <img src = "https://github.com/32nd-GO-SOPT-SOPKATHON-11/SOPKATHON-11-SERVER/assets/65678579/9fb31673-9a07-4b70-b3e4-2df530a79589" width="300">
 
