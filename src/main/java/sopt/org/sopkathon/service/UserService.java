@@ -10,6 +10,12 @@ import sopt.org.sopkathon.domain.User;
 import sopt.org.sopkathon.exception.Error;
 import sopt.org.sopkathon.infrastructure.HobbyRepository;
 import sopt.org.sopkathon.infrastructure.KeywordRepository;
+import sopt.org.sopkathon.controller.dto.response.MatchingResponseDto;
+import sopt.org.sopkathon.controller.dto.response.UserResponseDto;
+import sopt.org.sopkathon.domain.Matching;
+import sopt.org.sopkathon.domain.User;
+import sopt.org.sopkathon.exception.Error;
+import sopt.org.sopkathon.infrastructure.MatchingRepository;
 import sopt.org.sopkathon.infrastructure.UserRepository;
 
 import javax.transaction.Transactional;
@@ -23,11 +29,11 @@ public class UserService {
 
     private final UserRepository userRepository;
 
+    private final MatchingRepository matchingRepository;
+
     @Transactional
     public List<UserResponseDto> getUserList() {
-        System.out.println("DFSDF");
         List<User> users = userRepository.getAll();
-
 
         return users.stream()
                 .map(user -> UserResponseDto.of(
@@ -40,49 +46,62 @@ public class UserService {
     }
 
     @Transactional
-    public UserDetailResponseDto getUserDetail(Long id){
+    public UserDetailResponseDto getUserDetail(Long id) {
         User user = userRepository.findById(id);
         Hobby hobby = user.getHobby();
         Keyword keyword = user.getKeyword();
         List<String> hobbyList = new ArrayList<>();
         List<String> keywordList = new ArrayList<>();
-        if(hobby.isArt()){
+        if (hobby.isArt()) {
             hobbyList.add("미술");
         }
-        if(hobby.isBook()){
+        if (hobby.isBook()) {
             hobbyList.add("독서");
         }
-        if(hobby.isSong()){
+        if (hobby.isSong()) {
             hobbyList.add("노래");
         }
-        if(hobby.isMusic()){
+        if (hobby.isMusic()) {
             hobbyList.add("악기");
         }
-        if(hobby.isExercise()){
+        if (hobby.isExercise()) {
             hobbyList.add("운동");
         }
-        if(hobby.isDance()){
+        if (hobby.isDance()) {
             hobbyList.add("춤");
         }
 
-        if(keyword.isActive()){
+        if (keyword.isActive()) {
             keywordList.add("활동적인");
         }
-        if(keyword.isSmart()){
+        if (keyword.isSmart()) {
             keywordList.add("지적인");
         }
-        if(keyword.isSocial()){
+        if (keyword.isSocial()) {
             keywordList.add("사교적인");
         }
-        if(keyword.isSentimental()){
+        if (keyword.isSentimental()) {
             keywordList.add("감성적인");
         }
-        if(keyword.isHonest()){
+        if (keyword.isHonest()) {
             keywordList.add("솔직한");
         }
-        if(keyword.isGenuine()){
+        if (keyword.isGenuine()) {
             keywordList.add("성실한");
         }
         return new UserDetailResponseDto(user.getName(), user.getProfileImage(), user.getAge(), user.getLocal(), user.isMarried(), user.isHasChild(), hobbyList, keywordList);
+
+    }
+
+    @Transactional
+    public List<MatchingResponseDto> getMatchingList(Long womanId) { //User Response Dto
+        List<Matching> matchings = matchingRepository.findByWoman(womanId);
+        List<MatchingResponseDto> result = new ArrayList<>();
+        for(Matching match : matchings){
+            User user = userRepository.findById(match.getMan());
+            MatchingResponseDto responseDto = MatchingResponseDto.of(user.getName(), user.getProfileImage());
+            result.add(responseDto);
+        }
+        return result;
     }
 }
