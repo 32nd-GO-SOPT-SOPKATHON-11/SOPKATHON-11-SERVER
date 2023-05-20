@@ -115,6 +115,8 @@ feature/#이슈넘버
 - Merge 후 재사용하지 않는 브랜치는 삭제합니다.
 
 ## 👾 ERD 구조
+<img width="1109" alt="image" src="https://github.com/32nd-GO-SOPT-SOPKATHON-11/SOPKATHON-11-SERVER/assets/65678579/c030ec35-e87d-40ec-b841-9267ebdeb479">
+
 
 ## 📂 프로젝트 구조
 ```
