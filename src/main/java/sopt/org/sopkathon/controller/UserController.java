@@ -27,7 +27,7 @@ public class UserController {
     }
 
     @GetMapping("/{userId}")
-    public ApiResponse<UserDetailResponseDto> getUserDetail(@PathVariable Long userId) {
+    public ApiResponse<UserDetailResponseDto> getUserDetail(@PathVariable Long userId) throws NotFoundException{
         return ApiResponse.success(Success.USER_DETAIL_FIND_SUCCESS, userService.getUserDetail(userId));
     }
 

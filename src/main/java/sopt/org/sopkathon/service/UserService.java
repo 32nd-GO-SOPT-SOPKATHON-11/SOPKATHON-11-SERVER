@@ -42,8 +42,9 @@ public class UserService {
     }
 
     @Transactional
-    public UserDetailResponseDto getUserDetail(Long id) {
-        User user = userRepository.findById(id).get();
+    public UserDetailResponseDto getUserDetail(Long id) throws NotFoundException{
+
+        User user = userRepository.findById(id).orElseThrow(() -> new NotFoundException(Error.NOT_FOUND_ERROR, "존재하지 않는 유저를 검색했습니다."));
         Hobby hobby = user.getHobby();
         Keyword keyword = user.getKeyword();
         List<String> hobbyList = new ArrayList<>();
